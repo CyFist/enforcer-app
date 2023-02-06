@@ -1,0 +1,107 @@
+[
+  {
+    "header": "Both Engine Flame Out",
+    "elm": { "answer_1": "IGNITION", "answer_2": "BOTH ON" }
+  },
+  {
+    "header": "Engine Fire / Severe Damage",
+    "elm": {
+      "answer_1": "FUEL LEVER",
+      "answer_2": "SHUT",
+      "answer_3": "FIRE HANDLE",
+      "answer_4": "PULL AND DISCH 1"
+    }
+  },
+  {
+    "header": "Engine Out",
+    "elm": {
+      "prompt_1": "If no light-up within 10 seconds:",
+      "answer_1": "FUEL LEVER",
+      "answer_2": "SHUT"
+    }
+  },
+  {
+    "header": "Engine ITT High",
+    "elm": { "answer_1": "POWER LEVER", "answer_2": "RETARD" }
+  },
+  {
+    "header": "Air-Start",
+    "elm": {
+      "prompt_1": "If no light-up within 10 seconds:",
+      "answer_1": "FUEL LEVER",
+      "answer_2": "SHUT",
+      "answer_3": "START P/B",
+      "answer_4": "OFF",
+      "answer_5": "IGNITION",
+      "answer_6": "OFF"
+    }
+  },
+  {
+    "header": "Excessive Cabin Altitude",
+    "elm": { "answer_1": "OXY MASK", "answer_2": "ON" }
+  },
+  {
+    "header": "Evacuation / On Ground",
+    "elm": {
+      "answer_1": "PARK BRAKE",
+      "answer_2": "ON",
+      "answer_3": "BOTH FUEL LEVERS",
+      "answer_4": "SHUT"
+    }
+  },
+  {
+    "header": "Discountinued Engine Start On Ground",
+    "elm": {
+      "prompt_1": "If no light-up within 10 sec after advancing the fuel lever to START:",
+      "answer_1": "FUEL LEVER",
+      "answer_2": "SHUT",
+      "prompt_2": "15 sec after shutting the fuel lever:",
+      "answer_3": "START P/B",
+      "answer_4": "OFF"
+    }
+  },
+  {
+    "header": "Discountinued Engine Start On Ground",
+    "elm": {
+      "prompt_1": "If ITT rises rapidly and the start limit is likely to be exceeeded:",
+      "answer_1": "FUEL LEVER",
+      "answer_2": "SHUT",
+      "answer_3": "START P/B",
+      "answer_4": "OFF"
+    }
+  },
+  {
+    "header": "Emergency Descent",
+    "elm": {
+      "answer_1": "POWER LEVERS",
+      "answer_2": "FLT IDLE",
+      "answer_3": "SPEED",
+      "answer_4": "VMO"
+    }
+  },
+  {
+    "header": "Ground Range Selectors",
+    "elm": {
+      "answer_1": "GROUND RANGE SELECTORS",
+      "answer_2": "RELEASE",
+      "answer_3": "POWER LEVERS",
+      "answer_4": "MOVE FORWARD UNTIL ALERT LIGHT GOES OFF"
+    }
+  },
+  {
+    "header": "Jet-Pipe Fire",
+    "elm": {
+      "answer_1": "FUEL LEVER",
+      "answer_2": "SHUT",
+      "answer_3": "FUEL PUMPS",
+      "answer_4": "OFF",
+      "answer_5": "START P/B",
+      "answer_6": "ON",
+      "answer_7": "ENGINE SELECTOR",
+      "answer_8": "L OR R",
+      "prompt_1": "After fire has been extinguished:",
+      "answer_9": "START P/B",
+      "answer_10": "OFF"
+    }
+  }
+]
