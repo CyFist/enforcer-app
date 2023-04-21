@@ -35,5 +35,15 @@ const mongoPost = async (endpoint, msg) => {
     console.log(error);
   }
 };
+const mongoGet = async (endpoint) => {
+  try {
+    const res = await mongodb.get(endpoint);
 
-export { mongoPost };
+    const data = res.data;
+
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+export { mongoPost, mongoGet };

@@ -29,7 +29,7 @@ const TxtField = (props) => {
       sx={{ my: 2 }}
       multiple
       id="tags-filled"
-      options={userRecords.map((option) => option.User)}
+      options={userRecords.map((option) => option.user)}
       {...props}
       renderInput={(params) => (
         <TextField

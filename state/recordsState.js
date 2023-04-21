@@ -2,6 +2,15 @@ import { atom, atomFamily, selector, selectorFamily } from "recoil";
 import _ from "lodash";
 import { localForageEffect } from "./quizState";
 
+import dayjs from "dayjs";
+import isoWeek from "dayjs/plugin/isoWeek";
+import localeData from "dayjs/plugin/localeData";
+import "dayjs/locale/en-sg";
+
+dayjs.locale("en-sg");
+dayjs.extend(localeData);
+dayjs.extend(isoWeek);
+
 export const RecordsAtom = atom({
   key: "Records",
   default: [],
@@ -12,7 +21,7 @@ export const SortedRecordSelector = selector({
   key: "SortedRecordSelector",
   get: ({ get }) => {
     const Records = get(RecordsAtom);
-    const sortedRecords = _.sortBy(Records, ["User"]);
+    const sortedRecords = _.sortBy(Records, ["user"]);
     return sortedRecords;
   },
 });
@@ -31,7 +40,7 @@ export const RecordAtomFamily = atomFamily({
       ({ get }) => {
         const Records = get(RecordsAtom);
         const userRecord = _.filter(Records, function (Record) {
-          return Record.User === user;
+          return Record.user === user;
         });
         return userRecord;
       },
@@ -45,13 +54,18 @@ export const RecordSelectorFamily = selectorFamily({
     ({ get }) => {
       const Records = get(RecordsAtom);
       const userRecord = _.find(Records, function (Record) {
-        return Record.User === user;
+        return Record.user === user;
       });
       const id = userRecord._id;
-      const name = userRecord.User;
+      const name = userRecord.user;
       const bfdate = userRecord.BF_Date;
       const quizdate = userRecord.Quiz_Date;
-      const allValid = userRecord.Valid;
+      const allValid =
+        (dayjs().isoWeek() === dayjs(bfdate).isoWeek()) &
+        (dayjs().isoWeek() === dayjs(quizdate).isoWeek())
+          ? true
+          : false;
+      //const allValid = userRecord.Valid;
 
       return { userRecord, id, name, bfdate, quizdate, allValid };
     },
@@ -77,7 +91,7 @@ export const isExpandedSelectorFamily = selectorFamily({
         ? set(
             SelectedRecordAtom,
             _.find(get(RecordsAtom), function (Record) {
-              return Record.User === user;
+              return Record.user === user;
             })
           )
         : set(SelectedRecordAtom, {});

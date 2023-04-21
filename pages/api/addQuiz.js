@@ -31,7 +31,7 @@ export default async (req, res) => {
       ];
     } */
 
-    const post = await db.collection("records").insertMany(body);
+    const post = await db.collection("Quiz").insertMany(body);
 
     res.json(post);
   } catch (e) {

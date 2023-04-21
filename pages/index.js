@@ -15,6 +15,7 @@ import { BoldfaceAtom } from "../state/bfState";
 //utils
 import boldfaces from "../utils/bf.json";
 import { restdbGet } from "../utils/api_client";
+import { mongoGet } from "../utils/mongoHelper";
 
 export default function Home() {
   const setRS = useSetRecoilState(RecordsAtom);
@@ -24,17 +25,18 @@ export default function Home() {
 
   React.useEffect(() => {
     // GET request using axios inside useEffect React hook
-    getData(
+    /* getData(
       "records",
       '/records?q={}&h={"$orderby": {"Valid": -1, "User": 1 }}'
-    );
-    getData("QnBank", "/quiz");
+    ); */
+    getData("records", "/getRecords");
+    //getData("QnBank", "/quiz");
     setBF(boldfaces);
   });
 
   const getData = async (hdr, query) => {
-    const data = await restdbGet(query);
-    //console.log(data);
+    const data = await mongoGet(query);
+    console.log(data);
     switch (hdr) {
       case "records":
         setRS(data);

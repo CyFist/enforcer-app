@@ -61,7 +61,7 @@ const UserItem = ({ user }) => {
     <ClickAwayListener
       onClickAway={() => {
         setIsExpanded(false);
-        if (SelectedRecord.User === name) {
+        if (SelectedRecord.user === name) {
           setSelectedRecord({});
         }
       }}
@@ -197,7 +197,7 @@ const UsersGrid = () => {
         const x = !_.isEmpty(
           _.compact(
             query.map((value) => {
-              if (_.startsWith(uRecord.User, value)) {
+              if (_.startsWith(uRecord.user, value)) {
                 return true;
               }
               return false;
@@ -210,7 +210,7 @@ const UsersGrid = () => {
     })
     .value()
     .map((objRecord) => {
-      return <UserItem key={`${objRecord.User}Item`} user={objRecord.User} />;
+      return <UserItem key={`${objRecord.user}Item`} user={objRecord.user} />;
     });
 
   return (
