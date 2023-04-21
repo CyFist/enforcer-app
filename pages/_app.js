@@ -6,8 +6,6 @@ import Layout from "../components/layout";
 import createEmotionCache from "../theme/createEmotionCache";
 import { CacheProvider } from "@emotion/react";
 
-
-
 const clientSideEmotionCache = createEmotionCache();
 
 export default function App({

@@ -1,21 +1,26 @@
-import * as React from 'react';
+import * as React from "react";
 
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import Chip from '@mui/material/Chip';
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
+import Divider from "@mui/material/Divider";
+import IconButton from "@mui/material/IconButton";
+import Chip from "@mui/material/Chip";
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
 
-import PersonRemoveAlt1OutlinedIcon from '@mui/icons-material/PersonRemoveAlt1Outlined';
-import PersonAddOutlinedIcon from '@mui/icons-material/PersonAddOutlined';
-import ClearIcon from '@mui/icons-material/Clear';
-import SearchIcon from '@mui/icons-material/Search';
+import PersonRemoveAlt1OutlinedIcon from "@mui/icons-material/PersonRemoveAlt1Outlined";
+import PersonAddOutlinedIcon from "@mui/icons-material/PersonAddOutlined";
+import ClearIcon from "@mui/icons-material/Clear";
+import SearchIcon from "@mui/icons-material/Search";
 
-import { useRecoilState, useSetRecoilState, useResetRecoilState, useRecoilValue } from 'recoil';
-import { queryAtom, searchBarAtom } from '../state/queryState';
-import { ModalAtom, ModalTitleAtom, ModalUserAtom } from '../state/modalState';
-import { RecordsAtom } from '../state/recordsState';
-import _ from 'lodash';
+import {
+  useRecoilState,
+  useSetRecoilState,
+  useResetRecoilState,
+  useRecoilValue,
+} from "recoil";
+import { queryAtom, searchBarAtom } from "../state/queryState";
+import { ModalAtom, ModalTitleAtom, ModalUserAtom } from "../state/modalState";
+import { RecordsAtom } from "../state/recordsState";
+import _ from "lodash";
 
 export default function SearchBar() {
   const setQuery = useSetRecoilState(queryAtom);
@@ -69,19 +74,19 @@ export default function SearchBar() {
             variant="outlined"
             placeholder="Search user"
             sx={{
-              '& .MuiOutlinedInput-root': {
+              "& .MuiOutlinedInput-root": {
                 py: 0.25,
                 mb: 1.5,
-                display: 'flex',
-                alignItems: 'center',
-                width: 'auto',
+                display: "flex",
+                alignItems: "center",
+                width: "auto",
                 borderRadius: 8,
-                borderStyle: 'none',
-                bgcolor: 'background.paper',
-                '& fieldset': {
-                  borderStyle: 'none'
-                }
-              }
+                borderStyle: "none",
+                bgcolor: "background.paper",
+                "& fieldset": {
+                  borderStyle: "none",
+                },
+              },
             }}
             InputProps={{
               ...params.InputProps,
@@ -100,7 +105,7 @@ export default function SearchBar() {
                     {_.isEmpty(value) ? <SearchIcon /> : <ClearIcon />}
                   </IconButton>
                   <Divider
-                    sx={{ height: 28, m: 0.5, bgcolor: 'text.primary' }}
+                    sx={{ height: 28, m: 0.5, bgcolor: "text.primary" }}
                     orientation="vertical"
                   />
                   <IconButton
@@ -108,7 +113,7 @@ export default function SearchBar() {
                     p={1}
                     aria-label="addUser"
                     onClick={() => {
-                      handleOpen('Add');
+                      handleOpen("Add");
                     }}
                   >
                     <PersonAddOutlinedIcon />
@@ -118,17 +123,17 @@ export default function SearchBar() {
                     p={1}
                     aria-label="removeUser"
                     onClick={() => {
-                      handleOpen('Remove');
+                      handleOpen("Remove");
                     }}
                   >
                     <PersonRemoveAlt1OutlinedIcon />
                   </IconButton>
                 </>
-              )
+              ),
             }}
             inputProps={{
               ...params.inputProps,
-              style: { textTransform: 'uppercase' }
+              style: { textTransform: "uppercase" },
             }}
           />
         );

@@ -135,7 +135,8 @@ const UserItem = ({ user }) => {
             onClick={() => {
               setIsExpanded(false);
             }}
-            component={Link("/Boldface")}
+            component={Link}
+            href="/Boldface"
             key={`${name}-BF`}
             sx={{
               py: 0,
@@ -158,7 +159,8 @@ const UserItem = ({ user }) => {
             onClick={() => {
               setIsExpanded(false);
             }}
-            component={Link("/Quiz")}
+            component={Link}
+            href="/Quiz"
             key={`${name}-Quiz`}
             sx={{
               py: 0,

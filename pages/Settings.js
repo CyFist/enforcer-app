@@ -60,6 +60,10 @@ export default function Settings() {
   const [rowModesModel, setRowModesModel] = React.useState({});
   const apiRef = useGridApiRef();
 
+  React.useEffect(() => {
+    console.log(rows);
+  }, []);
+
   function EditToolbar(props) {
     const { setRows, setRowModesModel } = props;
 
@@ -256,6 +260,7 @@ export default function Settings() {
         if (isInEditMode) {
           return [
             <GridActionsCellItem
+              key=""
               icon={<SaveIcon />}
               label="save"
               onClick={handleSaveClick(id)}
