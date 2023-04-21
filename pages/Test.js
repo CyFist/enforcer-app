@@ -21,17 +21,6 @@ export async function getStaticProps() {
 }
 
 export default function Test({ record }) {
-  /*   const handleclick = async () => {
-    const response = await fetch("/api/addRecords", {
-      method: "POST",
-      body: JSON.stringify(["Fist", "ATO huhM"]),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const data = await response.json();
-    console.log(data);
-  }; */
 
   const value = ["TEST1", "TEST2"];
   return (

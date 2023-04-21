@@ -1,3 +1,5 @@
+"use client";
+
 import React, { ReactElement, useMemo } from "react";
 import { useRecoilValue } from "recoil";
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";

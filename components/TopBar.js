@@ -1,5 +1,7 @@
 "use client";
 
+import Button from "@mui/material/Button";
+
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -25,12 +27,9 @@ import { EnforcerIcon } from "./icons";
 import ModeToggleButton from "./ModeToggleButton.tsx";
 
 import PropTypes from "prop-types";
-import useScrollTrigger from "@mui/material/useScrollTrigger";
 
 import Link from "next/link";
-//import { link } from "../utils/helperfunction";
-import { useRouter } from "next/router";
-//import { useLocation } from "react-router-dom";
+import { usePathname } from "next/navigation";
 
 const pages = [
   { page: "Home", path: "/", icon: <HomeOutlinedIcon /> },
@@ -46,27 +45,10 @@ const pages = [
   { page: "Test2", path: "/Test2", icon: <HomeOutlinedIcon /> },
 ];
 
-function ElevationScroll(props) {
-  const { children } = props;
-
-  const trigger = useScrollTrigger({
-    disableHysteresis: true,
-    threshold: 0,
-  });
-
-  return React.cloneElement(children, {
-    elevation: trigger ? 4 : 0,
-  });
-}
-
-ElevationScroll.propTypes = {
-  children: PropTypes.element.isRequired,
-};
-
-export default function CusomAppBar(props) {
+export default function TopBar() {
   const [isOpen, setIsOpen] = React.useState(false);
-  const router = useRouter();
-  //const { pathname } = useLocation();
+
+  const pathname = usePathname();
   const activeRoute = (routeName, currentRoute) => {
     return routeName === currentRoute ? true : false;
   };
@@ -108,7 +90,7 @@ export default function CusomAppBar(props) {
                 <ListItemButton
                   component={Link}
                   href={obj.path}
-                  selected={activeRoute(obj.path, router.pathname)}
+                  selected={activeRoute(obj.path, pathname)}
                   onClick={toggleDrawer}
                   disableRipple
                   disableTouchRipple
@@ -144,53 +126,49 @@ export default function CusomAppBar(props) {
   };
 
   return (
-    <ElevationScroll {...props}>
-      <AppBar
-        position="sticky"
-        color="transparent"
-        sx={{ bgcolor: "background.appbar", backdropFilter: "blur(8px)" }}
-      >
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            aria-label="menu"
-            sx={{
-              "&:hover": { transform: "scale(1.1)" },
-            }}
-            onClick={toggleDrawer}
-            disableRipple
-          >
-            {isOpen ? <MenuOpenIcon /> : <MenuIcon />}
-          </IconButton>
-          <Drawer
-            sx={{
-              "& .MuiPaper-root": {
-                bgcolor: "background.appbar",
-                backdropFilter: "blur(3px)",
-              },
-              "& .MuiBackdrop-root": {
-                bgcolor: "rgba(0,0,0,0.5)",
-              },
-              //bgcolor: 'rgba(0,0,0,0.5)'
-              //backdropFilter: 'blur(1px)'
-            }}
-            anchor={"left"}
-            open={isOpen}
-            onClose={toggleDrawer}
-          >
-            <DrawItems />
-          </Drawer>
-          <EnforcerIcon sx={{ ml: 2, fontSize: 40 }} />
-          <Typography
-            variant="h5"
-            component="div"
-            sx={{ display: { xs: "none", md: "flex" }, flexGrow: 1 }}
-          >
-            Enforcer App
-          </Typography>
-        </Toolbar>
-      </AppBar>
-    </ElevationScroll>
+    <AppBar
+      position="sticky"
+      color="transparent"
+      sx={{ bgcolor: "background.appbar", backdropFilter: "blur(8px)" }}
+    >
+      <Toolbar>
+        <IconButton
+          size="large"
+          edge="start"
+          aria-label="menu"
+          sx={{
+            "&:hover": { transform: "scale(1.1)" },
+          }}
+          onClick={toggleDrawer}
+          disableRipple
+        >
+          {<MenuIcon />}
+        </IconButton>
+        <Drawer
+          sx={{
+            "& .MuiPaper-root": {
+              bgcolor: "background.appbar",
+              backdropFilter: "blur(3px)",
+            },
+            "& .MuiBackdrop-root": {
+              bgcolor: "rgba(0,0,0,0.5)",
+            },
+          }}
+          anchor={"left"}
+          open={isOpen}
+          onClose={toggleDrawer}
+        >
+          <DrawItems />
+        </Drawer>
+        <EnforcerIcon sx={{ ml: 2, fontSize: 40 }} />
+        <Typography
+          variant="h5"
+          component="div"
+          sx={{ display: { xs: "none", md: "flex" }, flexGrow: 1 }}
+        >
+          Enforcer App
+        </Typography>
+      </Toolbar>
+    </AppBar>
   );
 }
