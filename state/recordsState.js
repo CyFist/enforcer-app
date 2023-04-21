@@ -65,7 +65,6 @@ export const RecordSelectorFamily = selectorFamily({
         (dayjs().isoWeek() === dayjs(quizdate).isoWeek())
           ? true
           : false;
-      //const allValid = userRecord.Valid;
 
       return { userRecord, id, name, bfdate, quizdate, allValid };
     },
