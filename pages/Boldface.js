@@ -1,21 +1,31 @@
 import * as React from "react";
-import { useRecoilState, useRecoilValue, useResetRecoilState } from "recoil";
-import { RemBoldfaceAtom, SelectedBFSelector } from "../state/bfState";
+import {
+  useRecoilState,
+  useRecoilValue,
+  useSetRecoilState,
+  useResetRecoilState,
+} from "recoil";
+import {
+  BoldfaceAtom,
+  RemBoldfaceAtom,
+  SelectedBFSelector,
+} from "../state/bfState";
 import { SelectedRecordAtom } from "../state/recordsState";
 
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Unstable_Grid2";
 import Typography from "@mui/material/Typography";
 
-//import { useNavigate } from 'react-router-dom';
 import { useRouter } from "next/router";
 
 import Stepper from "components/Stepper";
 import TxtField from "components/Textfield";
-import { restdbPut } from "../utils/api_client";
+import { mongoPost } from "../utils/mongoHelper";
 import { getLines } from "../utils/helperfunc";
 
 import _ from "lodash";
+
+import boldfaces from "../utils/bf.json";
 
 import dayjs from "dayjs";
 import isoWeek from "dayjs/plugin/isoWeek";
@@ -27,15 +37,19 @@ dayjs.extend(localeData);
 dayjs.extend(isoWeek);
 
 const Boldface = () => {
+  const setBF = useSetRecoilState(BoldfaceAtom);
   const [{ bfs, Rem_bfs, Rem_bfs_num, bf_hdr, bf_elm }, handleOnSubmit] =
     useRecoilState(SelectedBFSelector);
   const resetRemBfs = useResetRecoilState(RemBoldfaceAtom);
   const selectedRec = useRecoilValue(SelectedRecordAtom);
   const txtRef = React.useRef([]);
   const router = useRouter();
-  //const navigate = useNavigate();
 
-  console.log(selectedRec);
+  React.useEffect(() => {
+    setBF(boldfaces);
+  });
+
+  //console.log(selectedRec);
   React.useEffect(() => {
     if (Rem_bfs_num === 0) {
       //TODO show all the loading page
@@ -113,10 +127,8 @@ export default Boldface;
 function submit(selectedRec, router, resetState) {
   if (!_.isEmpty(selectedRec)) {
     const userobj = _.cloneDeep(selectedRec); //Create New instance of Record since Its a read-only.
-    const allValid =
-      dayjs().isoWeek() === dayjs(userobj.Quiz_Date).isoWeek() ? true : false;
-    _.assign(userobj, { BF_Date: new Date().toISOString(), Valid: allValid });
-    restdbPut(`/records/${selectedRec._id}`, userobj);
+    userobj.BF_Date.push(new Date());
+    mongoPost("/editRecord", userobj);
     router.push("/Overview");
   }
   resetState();

@@ -13,27 +13,16 @@ export default async (req, res) => {
     body = msg.map((username) => {
       const userbody = {
         user: username,
-        BF_Date: null,
-        Quiz_Date: null,
-        Valid: false,
+        BF_Date: [],
+        Quiz_Date: [],
       };
 
       return userbody;
     });
-    /* } else {
-      body = [
-        {
-          user: msg,
-          BF_Date: null,
-          Quiz_Date: null,
-          Valid: false,
-        },
-      ];
-    } */
 
-    const post = await db.collection("records").insertMany(body);
+    const data = await db.collection("records").insertMany(body);
 
-    res.json(post);
+    res.json(data);
   } catch (e) {
     console.error(e);
     throw new Error(e).message;

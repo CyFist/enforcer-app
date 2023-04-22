@@ -18,6 +18,8 @@ import { RecordsAtom, SortedRecordSelector } from "../state/recordsState";
 import { ModalAtom, ModalTitleAtom, ModalUserAtom } from "../state/modalState";
 
 import { restdbPost, restdbDelete } from "../utils/api_client";
+import { mongoPost } from "../utils/mongoHelper";
+import { useRouter } from "next/router";
 
 const TxtField = (props) => {
   const userRecords = useRecoilValue(SortedRecordSelector);
@@ -54,13 +56,14 @@ const UserManagement = () => {
   const fullScreen = useMediaQuery((theme) => theme.breakpoints.down("xs"));
 
   const [btnDisabled, setbtnDisabled] = React.useState(true);
+  const router = useRouter();
 
   ///TODO track virtua keyboard state to adjust modal
 
   const AddonChange = (ev, newValue) => {
     const CapValue = newValue.map((value) => value.toUpperCase());
     const filterBasedonValue = _.compact(
-      _.chain(userRecords).keyBy("User").at(CapValue).value()
+      _.chain(userRecords).keyBy("user").at(CapValue).value()
     );
 
     const finalValue = _.isEmpty(filterBasedonValue)
@@ -85,23 +88,7 @@ const UserManagement = () => {
   };
 
   const HandleOnclick = (value) => () => {
-    if (modalTitle === "Remove") {
-      const CapValue = value.map((v) => v.toUpperCase());
-      const ids = _.chain(userRecords)
-        .keyBy("User")
-        .at(CapValue)
-        .map((obj) => obj._id)
-        .value();
-
-      console.log(ids);
-      restdbDelete("/records/*", ids);
-    } else {
-      //restdbPost("/records", value);
-      //mongoPost("/records", value);
-      //console.log("test");
-      //setOpenModal(false);
-      //setValue([]);
-    }
+    mongoPost(modalTitle === "Remove" ? "/deleteRecord" : "/addRecords", value);
     setOpenModal(false);
     setValue([]);
   };

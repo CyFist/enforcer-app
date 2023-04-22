@@ -20,9 +20,9 @@ export default async (req, res) => {
     const client = await clientPromise;
     const db = client.db("enforcer");
 
-    const records = await db.collection("records").find({}).toArray();
+    const data = await db.collection("records").find({}).toArray();
 
-    res.json(records);
+    res.json(data);
   } catch (e) {
     console.error(e);
   }

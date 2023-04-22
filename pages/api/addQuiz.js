@@ -31,9 +31,9 @@ export default async (req, res) => {
       ];
     } */
 
-    const post = await db.collection("Quiz").insertMany(body);
+    const data = await db.collection("Quiz").insertMany(body);
 
-    res.json(post);
+    res.json(data);
   } catch (e) {
     console.error(e);
     throw new Error(e).message;

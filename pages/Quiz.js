@@ -1,5 +1,5 @@
 import * as React from "react";
-import { restdbPut } from "../utils/api_client";
+import { mongoPost } from "../utils/mongoHelper";
 import { useRouter } from "next/router";
 import Stepper from "../components/Stepper";
 import { OptionsGroup } from "../components/QuizCard";
@@ -68,10 +68,8 @@ export default Quiz;
 function submit(selectedRec, router, resetState) {
   if (!_.isEmpty(selectedRec)) {
     const userobj = _.cloneDeep(selectedRec); //Create New instance of Record since Its a read-only.
-    const allValid =
-      dayjs().isoWeek() === dayjs(userobj.BF_Date).isoWeek() ? true : false;
-    _.assign(userobj, { Quiz_Date: new Date().toISOString(), Valid: allValid });
-    restdbPut(`/records/${selectedRec._id}`, userobj);
+    userobj.Quiz_Date.push(new Date());
+    mongoPost("/editRecord", userobj);
     router.push("/Overview");
   }
   resetState();

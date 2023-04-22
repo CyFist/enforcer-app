@@ -10,25 +10,9 @@ const mongodb = axios.create({
 
 const mongoPost = async (endpoint, msg) => {
   try {
-    let body;
-    if (_.isArray(msg)) {
-      body = msg.map((username) => {
-        const userbody = {
-          User: username,
-          BF_Date: null,
-          Quiz_Date: null,
-          Valid: false,
-        };
-
-        return userbody;
-      });
-    } else {
-      body = msg;
-    }
-
-    let res = await mongodb.post(endpoint, body);
+    let res = await mongodb.post(endpoint, msg);
     if (res.status >= 200 && res.status <= 299) {
-      console.log("success");
+      console.log("success", res);
       return "success";
     }
   } catch (error) {
@@ -46,4 +30,5 @@ const mongoGet = async (endpoint) => {
     console.log(error);
   }
 };
+
 export { mongoPost, mongoGet };

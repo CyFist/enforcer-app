@@ -30,7 +30,7 @@ export default function Home() {
       '/records?q={}&h={"$orderby": {"Valid": -1, "User": 1 }}'
     ); */
     getData("records", "/getRecords");
-    //getData("QnBank", "/quiz");
+    getData("QnBank", "/getQuiz");
     setBF(boldfaces);
   });
 

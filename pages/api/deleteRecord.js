@@ -5,13 +5,11 @@ export default async (req, res) => {
   try {
     const client = await clientPromise;
     const db = client.db("enforcer");
-    const { id } = req.query;
+    const msg = req.body;
 
-    const post = await db.collection("records").deleteOne({
-      _id: ObjectId(id),
-    });
-
-    res.json(post);
+    const query = JSON.parse(JSON.stringify({ user: { $in: msg } }));
+    const data = await db.collection("records").deleteMany(query);
+    res.json(data);
   } catch (e) {
     console.error(e);
     throw new Error(e).message;
