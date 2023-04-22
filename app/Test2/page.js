@@ -1,5 +1,7 @@
+import { getBaseUrl } from "#/lib/getBaseUrl";
+
 async function getData() {
-  const res = await fetch("http://localhost:3000/api/getRecords", {
+  const res = await fetch(`${getBaseUrl()}/api/getRecords`, {
     cache: "no-store",
   });
   // The return value is *not* serialized
