@@ -15,15 +15,19 @@ import clientPromise from "lib/mongodb";
   await init();
 })(); */
 
-export default async (req, res) => {
+export default async function handler(req, res) {
   try {
     const client = await clientPromise;
     const db = client.db("enforcer");
 
-    const data = await db.collection("records").find({}).toArray();
+    const data = await db
+      .collection("records")
+      .find({})
+      .sort({ user: 1 })
+      .toArray();
 
     res.json(data);
   } catch (e) {
     console.error(e);
   }
-};
+}

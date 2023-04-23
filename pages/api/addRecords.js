@@ -1,15 +1,15 @@
 import clientPromise from "lib/mongodb";
 import _ from "lodash";
 
-export default async (req, res) => {
+export default async function handler(req, res) {
   try {
     const client = await clientPromise;
     const db = client.db("enforcer");
     const msg = req.body;
-    //const msg = ["WIKI", "ARTISTE"];
+
 
     let body;
-    /* if (_.isArray(msg)) { */
+
     body = msg.map((username) => {
       const userbody = {
         user: username,
@@ -27,4 +27,4 @@ export default async (req, res) => {
     console.error(e);
     throw new Error(e).message;
   }
-};
+}

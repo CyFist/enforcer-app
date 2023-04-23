@@ -1,7 +1,7 @@
 import clientPromise from "lib/mongodb";
 import { ObjectId } from "mongodb";
 
-export default async (req, res) => {
+export default async function handler(req, res) {
   try {
     const client = await clientPromise;
     const db = client.db("enforcer");
@@ -14,4 +14,4 @@ export default async (req, res) => {
     console.error(e);
     throw new Error(e).message;
   }
-};
+}

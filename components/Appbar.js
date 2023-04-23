@@ -20,7 +20,7 @@ import FlightLandOutlinedIcon from "@mui/icons-material/FlightLandOutlined";
 import QuizOutlinedIcon from "@mui/icons-material/QuizOutlined";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
-import { EnforcerIcon } from "./icons";
+import { EnforcerIcon } from "lib/InstallPWA/Icons";
 
 import ModeToggleButton from "./ModeToggleButton.tsx";
 
@@ -42,8 +42,6 @@ const pages = [
     path: "/Settings",
     icon: <SettingsOutlinedIcon />,
   },
-  { page: "Test", path: "/Test", icon: <HomeOutlinedIcon /> },
-  { page: "Test2", path: "/Test2", icon: <HomeOutlinedIcon /> },
 ];
 
 function ElevationScroll(props) {
