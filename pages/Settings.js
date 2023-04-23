@@ -22,7 +22,7 @@ import {
   GridRowModes,
   GridFooterContainer,
 } from "@mui/x-data-grid";
-import { randomId } from "@mui/x-data-grid-generator";
+import { mongoGet, mongoPost } from "../utils/mongoHelper";
 import { useRecoilState } from "recoil";
 import { EdittedQnBnkSelector } from "../state/quizState";
 
@@ -58,21 +58,28 @@ const toolbarSx = {
 export default function Settings() {
   const [rows, setRows] = useRecoilState(EdittedQnBnkSelector);
   const [rowModesModel, setRowModesModel] = React.useState({});
+  const [newID, setnewID] = React.useState("");
   const apiRef = useGridApiRef();
 
+  async function getObjectID() {
+    const { id } = await mongoGet("/newObjectID");
+    console.log(id);
+    setnewID(id);
+  }
+
   React.useEffect(() => {
-    console.log(rows);
+    getObjectID();
   }, []);
 
   function EditToolbar(props) {
     const { setRows, setRowModesModel } = props;
 
     const handleClick = () => {
-      const id = randomId();
+      getObjectID();
       setRows((oldRows) => [
         ...oldRows,
         {
-          _id: id,
+          _id: newID,
           Question: "",
           Option1: "",
           Option2: "",
@@ -84,7 +91,7 @@ export default function Settings() {
       ]);
       setRowModesModel((oldModel) => ({
         ...oldModel,
-        [id]: { mode: GridRowModes.Edit, fieldToFocus: "Question" },
+        [newID]: { mode: GridRowModes.Edit, fieldToFocus: "Question" },
       }));
       apiRef.current.scrollToIndexes({
         rowIndex: rows.length - 1,
@@ -117,7 +124,7 @@ export default function Settings() {
     setRowModesModel({ ...rowModesModel, [id]: { mode: GridRowModes.View } });
 
     const qnsObj = apiRef.current.getRowWithUpdatedValues(id);
-    const { _id, isNew, ...body } = qnsObj;
+    const { isNew, ...body } = qnsObj;
     //console.log(_id);
     //console.log(_.isObject(body));
     //console.log(_.isArray(body));
@@ -125,10 +132,10 @@ export default function Settings() {
     if (_.isBoolean(isNew)) {
       console.log("new");
       //console.log(body);
-      restdbPost("/quiz", body);
+      mongoPost("/addQuiz", body);
     } else {
       console.log("existing");
-      restdbPut(`/quiz/${_id}`, body);
+      //restdbPut(`/quiz/${_id}`, body);
     }
   };
 

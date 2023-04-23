@@ -59,9 +59,9 @@ export const RecordSelectorFamily = selectorFamily({
       const id = userRecord._id;
       const name = userRecord.user;
       const bfdate =
-        userRecord.BF_Date === [] ? null : userRecord.BF_Date.slice(-1);
+        userRecord.BF_Date === [] ? "" : userRecord.BF_Date.slice(-1);
       const quizdate =
-        userRecord.Quiz_Date === [] ? null : userRecord.Quiz_Date.slice(-1);
+        userRecord.Quiz_Date === [] ? "" : userRecord.Quiz_Date.slice(-1);
       const allValid =
         (dayjs().isoWeek() === dayjs(bfdate).isoWeek()) &
         (dayjs().isoWeek() === dayjs(quizdate).isoWeek())

@@ -17,7 +17,6 @@ import { useRecoilValue, useRecoilState } from "recoil";
 import { RecordsAtom, SortedRecordSelector } from "../state/recordsState";
 import { ModalAtom, ModalTitleAtom, ModalUserAtom } from "../state/modalState";
 
-import { restdbPost, restdbDelete } from "../utils/api_client";
 import { mongoPost } from "../utils/mongoHelper";
 import { useRouter } from "next/router";
 

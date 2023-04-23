@@ -149,7 +149,7 @@ const UserItem = ({ user }) => {
               primary="Boldface"
               primaryTypographyProps={{ noWrap: true }}
               secondary={
-                bfdate === null ? "-" : dayjs(bfdate).format("DD MMM YY")
+                bfdate === "" ? "-" : dayjs(bfdate).format("DD MMM YY")
               }
               secondaryTypographyProps={{ noWrap: true }}
             />
@@ -176,7 +176,7 @@ const UserItem = ({ user }) => {
               primary="Quiz"
               primaryTypographyProps={{ noWrap: true }}
               secondary={
-                quizdate === null ? "-" : dayjs(quizdate).format("DD MMM YY")
+                quizdate === "" ? "-" : dayjs(quizdate).format("DD MMM YY")
               }
               secondaryTypographyProps={{ noWrap: true }}
             />
