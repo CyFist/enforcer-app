@@ -164,6 +164,7 @@ export default function CusomAppBar(props) {
           <Drawer
             sx={{
               "& .MuiPaper-root": {
+                p: "env(safe-area-inset-top) 0 0 env(safe-area-inset-left)",
                 bgcolor: "background.appbar",
                 backdropFilter: "blur(3px)",
               },

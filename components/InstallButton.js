@@ -2,7 +2,7 @@ import * as React from "react";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useReactPWAInstall } from "lib/InstallPWA/Index";
-import appLogo from "../public/icons/icon-192x192.png";
+import appLogo from "../public/icons/maskable_icon_x512.png";
 
 const InstallBtn = (props) => {
   const { pwaInstall, supported, isInstalled } = useReactPWAInstall();

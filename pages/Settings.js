@@ -124,13 +124,9 @@ export default function Settings() {
 
     const qnsObj = apiRef.current.getRowWithUpdatedValues(id);
     const { isNew, ...body } = qnsObj;
-    //console.log(_id);
-    //console.log(_.isObject(body));
-    //console.log(_.isArray(body));
-    //console.log(_.isBoolean(isNew));
+
     if (_.isBoolean(isNew)) {
       //console.log("new");
-      //console.log(body);
       mongoPost("/addQuiz", body);
     } else {
       //console.log("existing");
@@ -216,13 +212,13 @@ export default function Settings() {
       minWidth: 100,
       editable: true,
     },
-    {
+    /*     {
       field: "Answer",
       headerName: "Answer",
       flex: 1,
       minWidth: 100,
       editable: true,
-    },
+    }, */
     {
       field: "Option1",
       headerName: "Option 1",
