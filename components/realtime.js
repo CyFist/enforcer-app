@@ -17,7 +17,8 @@ const Realtime = () => {
   const setEdittedQnBnk = useSetRecoilState(EdittedQnBnkAtom);
   const setBF = useSetRecoilState(BoldfaceAtom);
   const [user, setUser] = useState();
-  const [events, setEvents] = useState([]);
+  const [recordevents, setRecordsEvents] = useState([]);
+  const [Quizevents, setQuizEvents] = useState([]);
 
   const getData = async (hdr, query) => {
     const data = await mongoGet(query);
@@ -37,7 +38,11 @@ const Realtime = () => {
   // This useEffect hook will run on events change
   useEffect(() => {
     getData("records", "/getRecords");
-  }, [events]);
+  }, [recordevents]);
+
+  useEffect(() => {
+    getData("QnBank", "/getQuiz");
+  }, [Quizevents]);
 
   useEffect(() => {
     getData("records", "/getRecords");
@@ -45,19 +50,35 @@ const Realtime = () => {
     setBF(boldfaces);
 
     login();
+    login2();
   }, []); // Return the JSX that will generate HTML for the page
 
+  //TODO use one change stream probably through a middleware. watch db instead of individual coll
   const login = async () => {
     // Authenticate anonymously
     const user = await app.logIn(Realm.Credentials.anonymous());
     setUser(user); // Connect to the database
 
     const mongodb = app.currentUser.mongoClient("mongodb-atlas");
-    const collection = mongodb.db("enforcer").collection("records");
-
+    const records = mongodb.db("enforcer").collection("records");
     // Everytime a change happens in the stream, add it to the list of events
-    for await (const change of collection.watch()) {
-      setEvents((events) => [...events, change]);
+    for await (const change of records.watch()) {
+      setRecordsEvents((events) => [...events, change]);
+      console.log(change);
+    }
+  };
+
+  const login2 = async () => {
+    // Authenticate anonymously
+    const user = await app.logIn(Realm.Credentials.anonymous());
+    setUser(user); // Connect to the database
+
+    const mongodb = app.currentUser.mongoClient("mongodb-atlas");
+    const Quiz = mongodb.db("enforcer").collection("Quiz");
+    // Everytime a change happens in the stream, add it to the list of events
+    for await (const change of Quiz.watch()) {
+      setQuizEvents((events) => [...events, change]);
+      console.log(change);
     }
   };
 

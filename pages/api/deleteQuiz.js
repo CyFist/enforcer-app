@@ -1,13 +1,16 @@
 import clientPromise from "lib/mongodb";
+import { ObjectId } from "mongodb";
 
 export default async function handler(req, res) {
   try {
     const client = await clientPromise;
     const db = client.db("enforcer");
-    const msg = req.body;
+    const id = req.query;
 
-    const query = JSON.parse(JSON.stringify({ user: { $in: msg } }));
-    const data = await db.collection("records").deleteMany(query);
+    const data = await db
+      .collection("Quiz")
+      .deleteOne({ _id: new ObjectId(id) });
+
     res.json(data);
   } catch (e) {
     console.error(e);

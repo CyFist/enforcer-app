@@ -1,6 +1,5 @@
 import * as React from "react";
 import _ from "lodash";
-import { restdbPut, restdbPost, restdbDelete } from "../utils/api_client";
 
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
@@ -63,7 +62,7 @@ export default function Settings() {
 
   async function getObjectID() {
     const { id } = await mongoGet("/newObjectID");
-    console.log(id);
+    //console.log(id);
     setnewID(id);
   }
 
@@ -130,18 +129,19 @@ export default function Settings() {
     //console.log(_.isArray(body));
     //console.log(_.isBoolean(isNew));
     if (_.isBoolean(isNew)) {
-      console.log("new");
+      //console.log("new");
       //console.log(body);
       mongoPost("/addQuiz", body);
     } else {
-      console.log("existing");
-      //restdbPut(`/quiz/${_id}`, body);
+      //console.log("existing");
+      const { _id, ...others } = body;
+      mongoPost(`/editQuiz?id=${_id}`, others);
     }
   };
 
   const handleDeleteClick = (id) => () => {
     setRows(rows.filter((row) => row._id !== id));
-    restdbDelete(`/quiz/${id}`);
+    mongoPost(`/deleteQuiz?id=${id}`);
   };
 
   const handleCancelClick = (id) => () => {
@@ -184,6 +184,7 @@ export default function Settings() {
       <>
         <InputBase
           multiline
+          rows={5}
           sx={{ fontSize: "0.875rem" }}
           value={value}
           onChange={handleValueChange}
@@ -273,6 +274,7 @@ export default function Settings() {
               onClick={handleSaveClick(id)}
             />,
             <GridActionsCellItem
+              key=""
               icon={<CancelIcon />}
               label="cancel"
               onClick={handleCancelClick(id)}
@@ -282,11 +284,13 @@ export default function Settings() {
 
         return [
           <GridActionsCellItem
+            key=""
             icon={<EditIcon />}
             label="edit"
             onClick={handleEditClick(id)}
           />,
           <GridActionsCellItem
+            key=""
             icon={<DeleteIcon />}
             label="delete"
             onClick={handleDeleteClick(id)}
