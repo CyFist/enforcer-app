@@ -1,7 +1,7 @@
 "use client";
 
 import { RecoilRoot } from "recoil";
-import AppThemeProvider from "../theme/ThemeProvider.tsx";
+import AppThemeProvider from "../theme/ThemeProvider";
 import CssBaseline from "@mui/material/CssBaseline";
 import Layout from "../components/layout";
 
