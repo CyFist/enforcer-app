@@ -1,16 +1,12 @@
 "use client";
 
-import React, { ReactElement, useMemo } from "react";
+import React, { useMemo } from "react";
 import { useRecoilValue } from "recoil";
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import { appThemeMode } from "./theme-atoms";
 import { dark, light } from "./customtheme";
 
-interface Props {
-  children: ReactElement;
-}
-
-function AppThemeProvider({ children }: Props): ReactElement {
+function AppThemeProvider({ children }) {
   const mode = useRecoilValue(appThemeMode);
   const theme = useMemo(
     () => createTheme(mode === "dark" ? dark : light),

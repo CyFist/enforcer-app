@@ -2,7 +2,7 @@ import Head from "next/head";
 import "../global.css";
 
 import { RecoilRoot } from "recoil";
-import AppThemeProvider from "../theme/ThemeProvider.tsx";
+import AppThemeProvider from "../theme/ThemeProvider";
 import CssBaseline from "@mui/material/CssBaseline";
 import Layout from "../components/layout";
 import Realtime from "../components/realtime";
@@ -218,6 +218,7 @@ export default function App({
       <RecoilRoot>
         <CacheProvider value={emotionCache}>
           <AppThemeProvider>
+            <CssBaseline />
             <ReactPWAInstallProvider>
               <Layout>
                 <Realtime />

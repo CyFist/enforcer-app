@@ -28,9 +28,7 @@ import PropTypes from "prop-types";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 
 import Link from "next/link";
-//import { link } from "../utils/helperfunction";
 import { useRouter } from "next/router";
-//import { useLocation } from "react-router-dom";
 
 const pages = [
   { page: "Home", path: "/", icon: <HomeOutlinedIcon /> },
@@ -64,7 +62,6 @@ ElevationScroll.propTypes = {
 export default function CusomAppBar(props) {
   const [isOpen, setIsOpen] = React.useState(false);
   const router = useRouter();
-  //const { pathname } = useLocation();
   const activeRoute = (routeName, currentRoute) => {
     return routeName === currentRoute ? true : false;
   };
@@ -154,6 +151,7 @@ export default function CusomAppBar(props) {
             edge="start"
             aria-label="menu"
             sx={{
+              color: "inherit",
               "&:hover": { transform: "scale(1.1)" },
             }}
             onClick={toggleDrawer}
