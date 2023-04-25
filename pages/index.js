@@ -27,6 +27,7 @@ const AnimatedIcon = () => (
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 131 100"
     sx={{
+      pr: 3,
       width: "60vmin",
       overflow: "visible",
       stroke: "rgba(200, 200, 200, 1)",
@@ -66,7 +67,7 @@ export default function Home() {
           <Box
             sx={{
               display: "flex",
-              placeContent: "center",
+              justifyContent: "space-between",
               overflow: "hidden",
               background: "rgba(0, 0, 0, 0.6)",
               borderRadius: 8, //'30px'
@@ -74,13 +75,12 @@ export default function Home() {
           >
             <Typography
               variant="h4"
-              width={"20vmin"}
-              sx={{ alignSelf: "flex-end", color: "white" }}
+              width={"40vmin"}
+              sx={{ alignSelf: "flex-end", pl: 3, color: "white" }}
             >
               Best things inside...
               <InstallBtn sx={{ mr: 2 }} />
             </Typography>
-
             <AnimatedIcon />
           </Box>
         </Container>

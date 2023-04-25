@@ -143,7 +143,7 @@ export default function CusomAppBar(props) {
       <AppBar
         position="sticky"
         color="transparent"
-        sx={{ bgcolor: "background.appbar", backdropFilter: "blur(8px)" }}
+        sx={{ bgcolor: "background.default", backdropFilter: "blur(8px)" }}
       >
         <Toolbar>
           <IconButton

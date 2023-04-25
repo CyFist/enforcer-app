@@ -1,23 +1,15 @@
 import Head from "next/head";
 import "../global.css";
-
 import { RecoilRoot } from "recoil";
-import AppThemeProvider from "../theme/ThemeProvider";
-import CssBaseline from "@mui/material/CssBaseline";
-import Layout from "../components/layout";
-import Realtime from "../components/realtime";
+import { RecoilEnv } from "recoil";
+import CssVarsProvider from "#/theme/CssVarsProvider";
+import Realtime from "#/components/realtime";
+import AppBar from "#/components/Appbar";
 import ReactPWAInstallProvider from "lib/InstallPWA/Index";
 
-import createEmotionCache from "../theme/createEmotionCache";
-import { CacheProvider } from "@emotion/react";
+export default function App({ Component, pageProps }) {
+  RecoilEnv.RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED = false;
 
-const clientSideEmotionCache = createEmotionCache();
-
-export default function App({
-  Component,
-  emotionCache = clientSideEmotionCache,
-  pageProps,
-}) {
   return (
     <>
       <Head>
@@ -216,17 +208,13 @@ export default function App({
         />
       </Head>
       <RecoilRoot>
-        <CacheProvider value={emotionCache}>
-          <AppThemeProvider>
-            <CssBaseline />
-            <ReactPWAInstallProvider>
-              <Layout>
-                <Realtime />
-                <Component {...pageProps} />
-              </Layout>
-            </ReactPWAInstallProvider>
-          </AppThemeProvider>
-        </CacheProvider>
+        <CssVarsProvider>
+          <Realtime />
+          <ReactPWAInstallProvider>
+            <AppBar />
+            <Component {...pageProps} />
+          </ReactPWAInstallProvider>
+        </CssVarsProvider>
       </RecoilRoot>
     </>
   );

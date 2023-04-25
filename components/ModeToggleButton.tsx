@@ -4,11 +4,8 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import BedtimeOutlinedIcon from "@mui/icons-material/BedtimeOutlined";
-import { appThemeMode, ThemeMode } from "../theme/theme-atoms.ts";
 
-interface DynamicIconProps {
-  mode: ThemeMode;
-}
+import { useColorScheme } from "@mui/material/styles";
 
 function DynamicIcon({ mode }: DynamicIconProps): ReactElement {
   if (mode === "dark") return <LightModeOutlinedIcon fontSize="large" />;
@@ -16,10 +13,10 @@ function DynamicIcon({ mode }: DynamicIconProps): ReactElement {
 }
 
 function ModeToggleButton(): ReactElement {
-  const [mode, setMode] = useRecoilState(appThemeMode);
+  const { mode, setMode } = useColorScheme();
 
   const toggleMode = () => {
-    setMode((prevState) => (prevState === "light" ? "dark" : "light"));
+    setMode(mode === "light" ? "dark" : "light");
   };
 
   return (
