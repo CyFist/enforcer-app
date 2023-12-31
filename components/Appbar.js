@@ -33,7 +33,7 @@ import { useRouter } from "next/router";
 const pages = [
   { page: "Home", path: "/", icon: <HomeOutlinedIcon /> },
   { page: "Overview", path: "/Overview", icon: <AppsIcon /> },
-  { page: "Boldface", path: "/Boldface", icon: <FlightLandOutlinedIcon /> },
+  /*{ page: "Boldface", path: "/Boldface", icon: <FlightLandOutlinedIcon /> },*/
   { page: "Quiz", path: "/Quiz", icon: <QuizOutlinedIcon /> },
   {
     page: "Settings (in development)",
