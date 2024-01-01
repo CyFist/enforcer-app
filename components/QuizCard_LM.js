@@ -1,10 +1,13 @@
-import React from 'react';
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import Typography from '@mui/material/Typography';
-import map from 'lodash/map';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { SelectedQn_LMSelector, SelectedOption_LMSelector } from '../state/quiz_LMState';
+import React from "react";
+import ToggleButton from "@mui/material/ToggleButton";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import Typography from "@mui/material/Typography";
+import map from "lodash/map";
+import { useRecoilState, useRecoilValue } from "recoil";
+import {
+  SelectedQn_LMSelector,
+  SelectedOption_LMSelector,
+} from "../state/quiz_LMState";
 
 export const OptionsGroup = () => {
   const { shuffleOptions, answer } = useRecoilValue(SelectedQn_LMSelector);
@@ -14,14 +17,14 @@ export const OptionsGroup = () => {
       <ToggleButton
         disableRipple
         sx={{
-          '&.Mui-selected': {
-            bgcolor: 'primary.main',
-            '&:hover': {
-              bgcolor: 'primary.dark'
-            }
-          }
+          "&.Mui-selected": {
+            bgcolor: "primary.main",
+            "&:hover": {
+              bgcolor: "primary.dark",
+            },
+          },
         }}
-        style={{ textTransform: 'none' }}
+        style={{ textTransform: "none" }}
         key={key}
         value={key}
         aria-label={key}
@@ -36,21 +39,21 @@ export const OptionsGroup = () => {
   return (
     <ToggleButtonGroup
       sx={{
-        display: 'grid',
-        gridTemplateRows: 'auto auto auto auto',
-        gridTemplateColumns: 'auto',
-        gridGap: '10px',
+        display: "grid",
+        gridTemplateRows: "auto auto auto auto",
+        gridTemplateColumns: "auto",
+        gridGap: "10px",
 
-        '& .MuiToggleButtonGroup-grouped': {
-          border: '1px solid !important',
+        "& .MuiToggleButtonGroup-grouped": {
+          border: "1px solid !important",
           borderRadius: 24,
-          '&:not(:last-of-type)': {
-            borderRadius: 24
+          "&:not(:last-of-type)": {
+            borderRadius: 24,
           },
-          '&:not(:first-of-type)': {
-            borderRadius: 24
-          }
-        }
+          "&:not(:first-of-type)": {
+            borderRadius: 24,
+          },
+        },
       }}
       fullWidth
       orientation="vertical"
