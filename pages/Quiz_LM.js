@@ -45,7 +45,6 @@ const Quiz = () => {
       <Stepper Total={TotalSample} leftover={RemainingSample} />
       <Typography variant="h5" my={3}>
         {Qns}
-        {answer}
       </Typography>
       <OptionsGroup />
       <Button

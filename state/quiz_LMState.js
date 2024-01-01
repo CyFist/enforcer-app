@@ -101,7 +101,6 @@ export const SelectedQn_LMSelector = selector({
     if (!_.isEmpty(SelOpts)) {
       set(SelectedOption_LMAtom, []);
 
-      //console.log(SelOpts);
       if (_.isEqual(SelOpts, answer)) {
         value = _.drop(newValue);
       } else {
