@@ -28,48 +28,48 @@ export const localForageEffect =
     });
   };
 
-export const QnBnkAtom = atom({
-  key: "QnBnkAtom",
+export const QnBnk_LMAtom = atom({
+  key: "QnBnk_LMAtom",
   default: [],
   effects: [localForageEffect("QnBank")],
 });
 
-export const EdittedQnBnkAtom = atom({
-  key: "EdittedQnBnkAtom",
+export const EdittedQnBnk_LMAtom = atom({
+  key: "EdittedQnBnk_LMAtom",
   default: [],
   effects: [localForageEffect("EdittedQnBnk")],
 });
 
-export const EdittedQnBnkSelector = selector({
-  key: "EdittedQnBnkSelector",
+export const EdittedQnBnk_LMSelector = selector({
+  key: "EdittedQnBnk_LMSelector",
 
   get: ({ get }) => {
-    const qBank = get(QnBnkAtom);
+    const qBank = get(QnBnk_LMAtom);
     return qBank;
   },
   set: ({ set }, newValue) => {
-    set(QnBnkAtom, newValue);
+    set(QnBnk_LMAtom, newValue);
   },
 });
 
-export const SampleQnAtom = atom({
-  key: "SampleBank",
+export const SampleQn_LMAtom = atom({
+  key: "SampleBank_LM",
   default: selector({
-    key: "SampleBankSelector",
+    key: "SampleBankSelector_LM",
 
     get: ({ get }) => {
-      const Samplelist = _.sampleSize(get(QnBnkAtom), 15);
+      const Samplelist = _.sampleSize(get(QnBnk_LMAtom), 15);
       return Samplelist;
     },
   }),
 });
 
-export const SelectedQnSelector = selector({
-  key: "SelectedQn",
+export const SelectedQn_LMSelector = selector({
+  key: "SelectedQn_LM",
 
   get: ({ get }) => {
-    const TotalSample = _.sampleSize(get(QnBnkAtom), 15);
-    const RemainingSample = _.sampleSize(get(SampleQnAtom), 15);
+    const TotalSample = _.sampleSize(get(QnBnk_LMAtom), 15);
+    const RemainingSample = _.sampleSize(get(SampleQn_LMAtom), 15);
     const SampleNum = RemainingSample.length;
     const SelectedQns = RemainingSample[0];
     const Qns = SelectedQns ? SelectedQns.Question : "";
@@ -79,6 +79,7 @@ export const SelectedQnSelector = selector({
     );
     const shuffleOptions = shuffleObject(Options);
     const answer = SelectedQns ? SelectedQns.Answer : "";
+
     return {
       TotalSample,
       RemainingSample,
@@ -92,14 +93,15 @@ export const SelectedQnSelector = selector({
   },
   set: ({ set, get }, newValue) => {
     const answer = _.split(newValue[0].Answer, ",");
-    const SelOpts = _.isArray(get(SelectedOptionAtom))
-      ? get(SelectedOptionAtom)
-      : [get(SelectedOptionAtom)].slice().sort();
+    const SelOpts = _.isArray(get(SelectedOption_LMAtom))
+      ? get(SelectedOption_LMAtom)
+      : [get(SelectedOption_LMAtom)].slice().sort();
     let value = [];
 
     if (!_.isEmpty(SelOpts)) {
-      set(SelectedOptionAtom, []);
+      set(SelectedOption_LMAtom, []);
 
+      //console.log(SelOpts);
       if (_.isEqual(SelOpts, answer)) {
         value = _.drop(newValue);
       } else {
@@ -109,25 +111,25 @@ export const SelectedQnSelector = selector({
 
       shuffled = _.shuffle(value);
 
-      set(SampleQnAtom, shuffled);
+      set(SampleQn_LMAtom, shuffled);
     }
   },
 });
 
-export const SelectedOptionAtom = atom({
-  key: "SelectedOptionAtom",
+export const SelectedOption_LMAtom = atom({
+  key: "SelectedOption_LMAtom",
   default: [],
 });
 
-export const SelectedOptionSelector = selector({
-  key: "SelectedOptionSelector",
+export const SelectedOption_LMSelector = selector({
+  key: "SelectedOption_LMSelector",
 
   get: ({ get }) => {
-    const options = get(SelectedOptionAtom);
+    const options = get(SelectedOption_LMAtom);
     const BtnState = _.isNull(options) || options.length === 0 ? true : false;
     return { options, BtnState };
   },
   set: ({ set }, newValue) => {
-    set(SelectedOptionAtom, newValue);
+    set(SelectedOption_LMAtom, newValue);
   },
 });

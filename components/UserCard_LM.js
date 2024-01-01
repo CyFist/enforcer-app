@@ -12,7 +12,6 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-import Divider from "@mui/material/Divider";
 import ClickAwayListener from "@mui/base/ClickAwayListener";
 
 import Typography from "@mui/material/Typography";
@@ -25,15 +24,14 @@ import {
   useResetRecoilState,
 } from "recoil";
 import {
-  RecordsAtom,
-  SelectedRecordAtom,
-  RecordSelectorFamily,
-  isExpandedSelectorFamily,
-  isExpandedAtomFamily,
-} from "../state/recordsState";
-import { RemBoldfaceAtom } from "../state/bfState";
-import { SampleQnAtom } from "../state/quizState";
-import { queryAtom } from "../state/queryState";
+  Records_LMAtom,
+  SelectedRecord_LMAtom,
+  RecordSelector_LMFamily,
+  isExpandedSelector_LMFamily,
+  isExpandedAtom_LMFamily,
+} from "../state/records_LMState";
+import { SampleQn_LMAtom } from "../state/quiz_LMState";
+import { query_LMAtom } from "../state/queryState";
 
 import dayjs from "dayjs";
 import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
@@ -52,26 +50,27 @@ dayjs.extend(weekday);
 
 const UserItem = ({ user }) => {
   const { name, bfdate, quizdate, allValid } = useRecoilValue(
-    RecordSelectorFamily(user),
+    RecordSelector_LMFamily(user),
   );
-  const setUserClicked = useSetRecoilState(isExpandedSelectorFamily(user));
+  const setUserClicked = useSetRecoilState(isExpandedSelector_LMFamily(user));
   const [isExpanded, setIsExpanded] = useRecoilState(
-    isExpandedAtomFamily(user),
+    isExpandedAtom_LMFamily(user),
   );
-  const [SelectedRecord, setSelectedRecord] =
-    useRecoilState(SelectedRecordAtom);
+  const [SelectedRecord, setSelectedRecord] = useRecoilState(
+    SelectedRecord_LMAtom,
+  );
 
   const handleChange = () => (event, isExpanded) => {
     setUserClicked(isExpanded);
   };
 
-  const resetSampleQn = useResetRecoilState(SampleQnAtom);
-  const resetRemBfs = useResetRecoilState(RemBoldfaceAtom);
+  const resetSampleQn = useResetRecoilState(SampleQn_LMAtom);
 
   return (
     <ClickAwayListener
       onClickAway={() => {
         setIsExpanded(false);
+
         if (SelectedRecord.user === name) {
           setSelectedRecord({});
         }
@@ -145,35 +144,10 @@ const UserItem = ({ user }) => {
           <ListItemButton
             onClick={() => {
               setIsExpanded(false);
-              resetRemBfs();
-            }}
-            component={Link}
-            href="/Boldface"
-            key={`${name}-BF`}
-            sx={{
-              py: 0,
-              borderRadius: 0,
-              "&:hover": { bgcolor: "action.hover" },
-            }}
-          >
-            <ListItemText
-              width="99%"
-              primary="Boldface"
-              primaryTypographyProps={{ noWrap: true }}
-              secondary={
-                bfdate === "" ? "Nil" : dayjs(bfdate).format("DD MMM YY")
-              }
-              secondaryTypographyProps={{ noWrap: true }}
-            />
-          </ListItemButton>
-          <Divider sx={{ bgcolor: "text.primary" }} orientation="horizontal" />
-          <ListItemButton
-            onClick={() => {
-              setIsExpanded(false);
               resetSampleQn();
             }}
             component={Link}
-            href="/Quiz"
+            href="/Quiz_LM"
             key={`${name}-Quiz`}
             sx={{
               py: 0,
@@ -201,8 +175,8 @@ const UserItem = ({ user }) => {
 };
 
 const UsersGrid = () => {
-  const uRecords = useRecoilValue(RecordsAtom);
-  const query = useRecoilValue(queryAtom);
+  const uRecords = useRecoilValue(Records_LMAtom);
+  const query = useRecoilValue(query_LMAtom);
 
   const UserItems = _.chain(uRecords)
     .filter((uRecord) => {

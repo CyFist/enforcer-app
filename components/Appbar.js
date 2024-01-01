@@ -16,8 +16,8 @@ import ListItemText from "@mui/material/ListItemText";
 
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import AppsIcon from "@mui/icons-material/Apps";
-import FlightLandOutlinedIcon from "@mui/icons-material/FlightLandOutlined";
-import QuizOutlinedIcon from "@mui/icons-material/QuizOutlined";
+import FlightTakeoffOutlinedIcon from "@mui/icons-material/FlightTakeoffOutlined";
+import BalanceOutlinedIcon from "@mui/icons-material/BalanceOutlined";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import { EnforcerIcon } from "lib/InstallPWA/Icons";
@@ -32,9 +32,10 @@ import { useRouter } from "next/router";
 
 const pages = [
   { page: "Home", path: "/", icon: <HomeOutlinedIcon /> },
-  { page: "Overview", path: "/Overview", icon: <AppsIcon /> },
-  /*{ page: "Boldface", path: "/Boldface", icon: <FlightLandOutlinedIcon /> },*/
-  { page: "Quiz", path: "/Quiz", icon: <QuizOutlinedIcon /> },
+  { page: "Pilot", path: "/Overview", icon: <FlightTakeoffOutlinedIcon /> },
+  { page: "LM", path: "/Overview_LM", icon: <BalanceOutlinedIcon /> },
+  /*{ page: "Boldface", path: "/Boldface", icon: <FlightLandOutlinedIcon /> },
+  { page: "Quiz", path: "/Quiz", icon: <QuizOutlinedIcon /> },*/
   {
     page: "Settings (in development)",
     path: "/Settings",

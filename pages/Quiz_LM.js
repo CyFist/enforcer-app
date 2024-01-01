@@ -2,18 +2,18 @@ import * as React from "react";
 import { mongoPost } from "../utils/mongoHelper";
 import { useRouter } from "next/router";
 import Stepper from "../components/Stepper";
-import { OptionsGroup } from "../components/QuizCard";
+import { OptionsGroup } from "../components/QuizCard_LM";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import _ from "lodash";
 import { Container } from "@mui/material";
 import { useRecoilValue, useSetRecoilState, useResetRecoilState } from "recoil";
 import {
-  SampleQnAtom,
-  SelectedQnSelector,
-  SelectedOptionSelector,
-} from "../state/quizState";
-import { SelectedRecordAtom } from "../state/recordsState";
+  SampleQn_LMAtom,
+  SelectedQn_LMSelector,
+  SelectedOption_LMSelector,
+} from "../state/quiz_LMState";
+import { SelectedRecord_LMAtom } from "../state/records_LMState";
 
 import dayjs from "dayjs";
 import isoWeek from "dayjs/plugin/isoWeek";
@@ -25,12 +25,12 @@ dayjs.extend(localeData);
 dayjs.extend(isoWeek);
 
 const Quiz = () => {
-  const { TotalSample, RemainingSample, SampleNum, Qns } =
-    useRecoilValue(SelectedQnSelector);
-  const handleOnSubmit = useSetRecoilState(SelectedQnSelector);
-  const selected = useRecoilValue(SelectedOptionSelector);
-  const resetSampleQn = useResetRecoilState(SampleQnAtom);
-  const selectedRec = useRecoilValue(SelectedRecordAtom);
+  const { TotalSample, RemainingSample, SampleNum, Qns, answer } =
+    useRecoilValue(SelectedQn_LMSelector);
+  const handleOnSubmit = useSetRecoilState(SelectedQn_LMSelector);
+  const selected = useRecoilValue(SelectedOption_LMSelector);
+  const resetSampleQn = useResetRecoilState(SampleQn_LMAtom);
+  const selectedRec = useRecoilValue(SelectedRecord_LMAtom);
   const router = useRouter();
 
   React.useEffect(() => {
@@ -45,6 +45,7 @@ const Quiz = () => {
       <Stepper Total={TotalSample} leftover={RemainingSample} />
       <Typography variant="h5" my={3}>
         {Qns}
+        {answer}
       </Typography>
       <OptionsGroup />
       <Button
@@ -69,8 +70,8 @@ function submit(selectedRec, router, resetState) {
   if (!_.isEmpty(selectedRec)) {
     const userobj = _.cloneDeep(selectedRec); //Create New instance of Record since Its a read-only.
     userobj.Quiz_Date.push(new Date());
-    mongoPost("/editRecord", userobj);
-    router.push("/Overview");
+    mongoPost("/editRecord_LM", userobj);
+    router.push("/Overview_LM");
   }
   resetState();
 }

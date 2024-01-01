@@ -2,9 +2,7 @@ import * as React from "react";
 import Link from "next/link";
 
 export function link() {
-  return React.forwardRef((props, ref) => (
-    <Link ref={ref} {...props} />
-  ));
+  return React.forwardRef((props, ref) => <Link ref={ref} {...props} />);
 }
 
 export function getLines(str) {
@@ -12,6 +10,13 @@ export function getLines(str) {
   // We use || [] because it would otherwise fail if there weren't
   // any line breaks yet.
   return (str.match(/[\r\n]/g) || []).length;
+}
+
+export function removeExtraSpaces(string) {
+  return string
+    .trim()
+    .split(/[\s,\t,\n]+/)
+    .join(" ");
 }
 
 export function shuffleObject(obj) {

@@ -12,7 +12,7 @@ function AppThemeProvider({ children }) {
   const theme = extendTheme(myTheme);
 
   return (
-    <CssVarsProvider theme={theme}>
+    <CssVarsProvider theme={theme} defaultMode="dark">
       <CssBaseline />
       {children}
     </CssVarsProvider>
