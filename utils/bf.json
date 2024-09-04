@@ -1,10 +1,10 @@
 [
   {
-    "header": "Both Engine Flame Out",
+    "header": "BOTH ENGINE FLAME OUT",
     "elm": { "answer_1": "IGNITION", "answer_2": "BOTH ON" }
   },
   {
-    "header": "Engine Fire / Severe Damage",
+    "header": "ENGINE FIRE / SEVERE DAMAGE",
     "elm": {
       "answer_1": "FUEL LEVER",
       "answer_2": "SHUT",
@@ -13,7 +13,7 @@
     }
   },
   {
-    "header": "Engine Failure",
+    "header": "ENGINE FAILURE",
     "elm": {
       "prompt_1": "If no light-up within 10 seconds:",
       "answer_1": "FUEL LEVER",
@@ -21,7 +21,7 @@
     }
   },
   {
-    "header": "Engine Failure During Take-off or Go-around",
+    "header": "ENGINE FAILURE DURING TAKE-OFF OR GO-AROUND",
     "elm": {
       "prompt_1": "When positive climb",
       "answer_1": "LANDING GEAR",
@@ -40,7 +40,7 @@
     }
   },
   {
-    "header": "Inavernt Autofeather",
+    "header": "INADVERTENT AUTOFEATHER",
     "elm": {
       "prompt_1": "When positive climb:",
       "answer_1": "LANDING GEAR",
@@ -51,11 +51,11 @@
     }
   },
   {
-    "header": "Engine ITT High",
+    "header": "ENGINE ITT HIGH",
     "elm": { "answer_1": "POWER LEVER", "answer_2": "RETARD" }
   },
   {
-    "header": "Air-Start",
+    "header": "AIR-START",
     "elm": {
       "prompt_1": "If no light-up within 10 seconds:",
       "answer_1": "FUEL LEVER",
@@ -67,11 +67,11 @@
     }
   },
   {
-    "header": "Excessive Cabin Altitude",
+    "header": "EXCESSIVE CABIN ALTITUDE",
     "elm": { "answer_1": "OXY MASK", "answer_2": "ON" }
   },
   {
-    "header": "Evacuation / On Ground",
+    "header": "EVACUATION / ON GROUND EMERGENCY",
     "elm": {
       "answer_1": "PARK BRAKE",
       "answer_2": "ON",
@@ -80,7 +80,7 @@
     }
   },
   {
-    "header": "Discountinued Engine Start On Ground",
+    "header": "DISCONTINUED ENGINE START ON GROUND",
     "elm": {
       "prompt_1": "If no light-up within 10 sec after advancing the fuel lever to START:",
       "answer_1": "FUEL LEVER",
@@ -91,7 +91,7 @@
     }
   },
   {
-    "header": "Discountinued Engine Start On Ground",
+    "header": "DISCONTINUED ENGINE START ON GROUND",
     "elm": {
       "prompt_1": "If ITT rises rapidly and the start limit is likely to be exceeeded:",
       "answer_1": "FUEL LEVER",
@@ -101,7 +101,7 @@
     }
   },
   {
-    "header": "Emergency Descent",
+    "header": "EMERGENCY DESCENT",
     "elm": {
       "answer_1": "POWER LEVERS",
       "answer_2": "FLT IDLE",
@@ -110,7 +110,7 @@
     }
   },
   {
-    "header": "Ground Range Selectors",
+    "header": "GND RANGE SEL",
     "elm": {
       "answer_1": "GROUND RANGE SELECTORS",
       "answer_2": "RELEASE",
@@ -119,7 +119,7 @@
     }
   },
   {
-    "header": "Jet-Pipe Fire",
+    "header": "JET-PIPE FIRE",
     "elm": {
       "answer_1": "FUEL LEVER",
       "answer_2": "SHUT",
@@ -135,7 +135,7 @@
     }
   },
   {
-    "header": "Unreliable airspeed Indication (PW125B)",
+    "header": "UNRELIABLE AIRSPEED INDICATION (PW125B)",
     "elm": {
       "answer_1": "AP CUT OUT",
       "answer_2": "DEPRESS",
