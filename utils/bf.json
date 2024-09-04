@@ -13,11 +13,41 @@
     }
   },
   {
-    "header": "Engine Out",
+    "header": "Engine Failure",
     "elm": {
       "prompt_1": "If no light-up within 10 seconds:",
       "answer_1": "FUEL LEVER",
       "answer_2": "SHUT"
+    }
+  },
+  {
+    "header": "Engine Failure During Take-off or Go-around",
+    "elm": {
+      "prompt_1": "When positive climb",
+      "answer_1": "LANDING GEAR",
+      "answer_2": "UP",
+      "answer_3": "AUTOFEATHER",
+      "answer_4": "VERIFY",
+      "prompt_2": "If negative autofeather:",
+      "answer_5": "FUEL LEVER",
+      "answer_6": "SHUT",
+      "answer_7": "ERP",
+      "answer_8": "GA",
+      "prompt_3": "If autofeather:",
+      "prompt_4": "At 400ft AGL:",
+      "answer_9": "FUEL LEVER",
+      "answer_10": "SHUT" 
+    }
+  },
+  {
+    "header": "Inavernt Autofeather",
+    "elm": {
+      "prompt_1": "When positive climb:",
+      "answer_1": "LANDING GEAR",
+      "answer_2": "UP",
+      "prompt_2": "At 400ft AGL:",
+      "answer_3": "FUEL LEVER",
+      "answer_4": "SHUT"
     }
   },
   {
@@ -102,6 +132,22 @@
       "prompt_1": "After fire has been extinguished:",
       "answer_9": "START P/B",
       "answer_10": "OFF"
+    }
+  },
+  {
+    "header": "Unreliable airspeed Indication (PW125B)",
+    "elm": {
+      "answer_1": "AP CUT OUT",
+      "answer_2": "DEPRESS",
+      "answer_3": "FD",
+      "answer_4": "SBY",
+      "prompt_1": "During take-off or GA below acceleration altitude:",
+      "answer_5": "PITCH",
+      "answer_6": "8 DEG",
+      "answer_7": "POWER LEVER",
+      "answer_8": "DETENT",
+      "prompt_2": "LEAVE ICING / VOLCANIC ASH CONDITION AS SOON AS POSSIBLE",
+      "prompt_3": "LAND AS SOON AS PRACTICABLE"
     }
   }
 ]
